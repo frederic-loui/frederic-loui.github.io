@@ -524,13 +524,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#verification" class="md-nav__link">
-    Verification
-  </a>
-  
-</li>
-      
       
       
       
@@ -554,40 +547,84 @@
 <h2 id="configuration"><strong>Configuration</strong><a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h2>
 <p><strong>r1:</strong>
 <div class="codehilite"><pre><span></span><span class="nv">hostname</span> <span class="nv">r1</span>
+<span class="nv">buggy</span>
+<span class="o">!</span>
 <span class="nv">logging</span> <span class="nv">file</span> <span class="nv">debug</span> ..<span class="o">/</span><span class="nv">binTmp</span><span class="o">/</span><span class="nv">zzz</span><span class="o">-</span><span class="nv">log</span><span class="o">-</span><span class="nv">r1</span>.<span class="nv">run</span>
-<span class="nv">vrf</span> <span class="nv">def</span> <span class="nv">v1</span>
+<span class="o">!</span>
+<span class="nv">vrf</span> <span class="nv">definition</span> <span class="nv">v1</span>
  <span class="nv">rd</span> <span class="mi">1</span>:<span class="mi">1</span>
  <span class="k">exit</span>
+<span class="o">!</span>
 <span class="nv">router</span> <span class="nv">ospf4</span> <span class="mi">1</span>
  <span class="nv">vrf</span> <span class="nv">v1</span>
- <span class="nv">router</span> <span class="mi">4</span>.<span class="mi">4</span>.<span class="mi">4</span>.<span class="mi">1</span>
- <span class="nv">area</span> <span class="mi">0</span> <span class="nv">ena</span>
- <span class="nv">red</span> <span class="nv">conn</span>
+ <span class="nv">router</span><span class="o">-</span><span class="nv">id</span> <span class="mi">4</span>.<span class="mi">4</span>.<span class="mi">4</span>.<span class="mi">1</span>
+ <span class="nv">traffeng</span><span class="o">-</span><span class="nv">id</span> <span class="mi">0</span>.<span class="mi">0</span>.<span class="mi">0</span>.<span class="mi">0</span>
+ <span class="nv">area</span> <span class="mi">0</span> <span class="nv">enable</span>
+ <span class="nv">redistribute</span> <span class="nv">connected</span>
  <span class="k">exit</span>
+<span class="o">!</span>
 <span class="nv">router</span> <span class="nv">ospf6</span> <span class="mi">1</span>
  <span class="nv">vrf</span> <span class="nv">v1</span>
- <span class="nv">router</span> <span class="mi">6</span>.<span class="mi">6</span>.<span class="mi">6</span>.<span class="mi">1</span>
- <span class="nv">area</span> <span class="mi">0</span> <span class="nv">ena</span>
- <span class="nv">red</span> <span class="nv">conn</span>
+ <span class="nv">router</span><span class="o">-</span><span class="nv">id</span> <span class="mi">6</span>.<span class="mi">6</span>.<span class="mi">6</span>.<span class="mi">1</span>
+ <span class="nv">traffeng</span><span class="o">-</span><span class="nv">id</span> ::
+ <span class="nv">area</span> <span class="mi">0</span> <span class="nv">enable</span>
+ <span class="nv">redistribute</span> <span class="nv">connected</span>
  <span class="k">exit</span>
-<span class="nv">int</span> <span class="nv">eth1</span>
- <span class="nv">vrf</span> <span class="k">for</span> <span class="nv">v1</span>
- <span class="nv">ipv4</span> <span class="nv">addr</span> <span class="mi">1</span>.<span class="mi">1</span>.<span class="mi">1</span>.<span class="mi">1</span> <span class="mi">255</span>.<span class="mi">255</span>.<span class="mi">255</span>.<span class="mi">0</span>
- <span class="nv">ipv6</span> <span class="nv">addr</span> <span class="nv">fe80</span>::<span class="mi">1</span> <span class="nv">ffff</span>::
- <span class="nv">router</span> <span class="nv">ospf4</span> <span class="mi">1</span> <span class="nv">ena</span>
- <span class="nv">router</span> <span class="nv">ospf4</span> <span class="mi">1</span> <span class="nv">net</span> <span class="nv">broad</span>
- <span class="nv">router</span> <span class="nv">ospf4</span> <span class="mi">1</span> <span class="nv">prio</span> <span class="mi">10</span>
- <span class="nv">router</span> <span class="nv">ospf6</span> <span class="mi">1</span> <span class="nv">ena</span>
- <span class="nv">router</span> <span class="nv">ospf6</span> <span class="mi">1</span> <span class="nv">net</span> <span class="nv">broad</span>
- <span class="nv">router</span> <span class="nv">ospf6</span> <span class="mi">1</span> <span class="nv">prio</span> <span class="mi">10</span>
+<span class="o">!</span>
+<span class="nv">interface</span> <span class="nv">loopback0</span>
+ <span class="nv">no</span> <span class="nv">description</span>
+ <span class="nv">vrf</span> <span class="nv">forwarding</span> <span class="nv">v1</span>
+ <span class="nv">ipv4</span> <span class="nv">address</span> <span class="mi">2</span>.<span class="mi">2</span>.<span class="mi">2</span>.<span class="mi">1</span> <span class="mi">255</span>.<span class="mi">255</span>.<span class="mi">255</span>.<span class="mi">255</span>
+ <span class="nv">ipv6</span> <span class="nv">address</span> <span class="mi">4321</span>::<span class="mi">1</span> <span class="nv">ffff</span>:<span class="nv">ffff</span>:<span class="nv">ffff</span>:<span class="nv">ffff</span>:<span class="nv">ffff</span>:<span class="nv">ffff</span>:<span class="nv">ffff</span>:<span class="nv">ffff</span>
+ <span class="nv">no</span> <span class="nv">shutdown</span>
+ <span class="nv">no</span> <span class="nv">log</span><span class="o">-</span><span class="nv">link</span><span class="o">-</span><span class="nv">change</span>
  <span class="k">exit</span>
-<span class="nv">int</span> <span class="nv">lo0</span>
- <span class="nv">vrf</span> <span class="k">for</span> <span class="nv">v1</span>
- <span class="nv">ipv4</span> <span class="nv">addr</span> <span class="mi">2</span>.<span class="mi">2</span>.<span class="mi">2</span>.<span class="mi">1</span> <span class="mi">255</span>.<span class="mi">255</span>.<span class="mi">255</span>.<span class="mi">255</span>
- <span class="nv">ipv6</span> <span class="nv">addr</span> <span class="mi">4321</span>::<span class="mi">1</span> <span class="nv">ffff</span>:<span class="nv">ffff</span>:<span class="nv">ffff</span>:<span class="nv">ffff</span>:<span class="nv">ffff</span>:<span class="nv">ffff</span>:<span class="nv">ffff</span>:<span class="nv">ffff</span>
+<span class="o">!</span>
+<span class="nv">interface</span> <span class="nv">ethernet1</span>
+ <span class="nv">no</span> <span class="nv">description</span>
+ <span class="nv">vrf</span> <span class="nv">forwarding</span> <span class="nv">v1</span>
+ <span class="nv">ipv4</span> <span class="nv">address</span> <span class="mi">1</span>.<span class="mi">1</span>.<span class="mi">1</span>.<span class="mi">1</span> <span class="mi">255</span>.<span class="mi">255</span>.<span class="mi">255</span>.<span class="mi">0</span>
+ <span class="nv">ipv6</span> <span class="nv">address</span> <span class="nv">fe80</span>::<span class="mi">1</span> <span class="nv">ffff</span>::
+ <span class="nv">router</span> <span class="nv">ospf4</span> <span class="mi">1</span> <span class="nv">enable</span>
+ <span class="nv">router</span> <span class="nv">ospf4</span> <span class="mi">1</span> <span class="nv">area</span> <span class="mi">0</span>
+ <span class="nv">router</span> <span class="nv">ospf4</span> <span class="mi">1</span> <span class="nv">network</span> <span class="nv">broadcast</span>
+ <span class="nv">router</span> <span class="nv">ospf4</span> <span class="mi">1</span> <span class="nv">priority</span> <span class="mi">10</span>
+ <span class="nv">router</span> <span class="nv">ospf6</span> <span class="mi">1</span> <span class="nv">enable</span>
+ <span class="nv">router</span> <span class="nv">ospf6</span> <span class="mi">1</span> <span class="nv">area</span> <span class="mi">0</span>
+ <span class="nv">router</span> <span class="nv">ospf6</span> <span class="mi">1</span> <span class="nv">network</span> <span class="nv">broadcast</span>
+ <span class="nv">router</span> <span class="nv">ospf6</span> <span class="mi">1</span> <span class="nv">priority</span> <span class="mi">10</span>
+ <span class="nv">no</span> <span class="nv">shutdown</span>
+ <span class="nv">no</span> <span class="nv">log</span><span class="o">-</span><span class="nv">link</span><span class="o">-</span><span class="nv">change</span>
  <span class="k">exit</span>
+<span class="o">!</span>
+<span class="o">!</span>
+<span class="o">!</span>
+<span class="o">!</span>
+<span class="o">!</span>
+<span class="o">!</span>
+<span class="o">!</span>
+<span class="o">!</span>
+<span class="o">!</span>
+<span class="o">!</span>
+<span class="o">!</span>
+<span class="o">!</span>
+<span class="o">!</span>
+<span class="o">!</span>
+<span class="o">!</span>
+<span class="k">end</span>
 </pre></div></p>
-<h2 id="verification"><strong>Verification</strong><a class="headerlink" href="#verification" title="Permanent link">&para;</a></h2>
+<p><strong>r2:</strong>
+<div class="codehilite"><pre><span></span><span class="n">hostname</span> <span class="n">r2</span>
+<span class="k">set</span> <span class="n">interfaces</span> <span class="n">ge</span><span class="o">-</span><span class="mi">0</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="mi">0</span><span class="p">.</span><span class="mi">0</span> <span class="n">family</span> <span class="n">inet</span> <span class="n">address</span> <span class="mi">1</span><span class="p">.</span><span class="mi">1</span><span class="p">.</span><span class="mi">1</span><span class="p">.</span><span class="mi">2</span><span class="o">/</span><span class="mi">24</span>
+<span class="k">set</span> <span class="n">interfaces</span> <span class="n">ge</span><span class="o">-</span><span class="mi">0</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="mi">0</span><span class="p">.</span><span class="mi">0</span> <span class="n">family</span> <span class="n">inet6</span>
+<span class="k">set</span> <span class="n">interfaces</span> <span class="n">lo0</span><span class="p">.</span><span class="mi">0</span> <span class="n">family</span> <span class="n">inet</span> <span class="n">address</span> <span class="mi">2</span><span class="p">.</span><span class="mi">2</span><span class="p">.</span><span class="mi">2</span><span class="p">.</span><span class="mi">2</span><span class="o">/</span><span class="mi">32</span>
+<span class="k">set</span> <span class="n">interfaces</span> <span class="n">lo0</span><span class="p">.</span><span class="mi">0</span> <span class="n">family</span> <span class="n">inet6</span> <span class="n">address</span> <span class="mi">4321</span><span class="p">::</span><span class="mi">2</span><span class="o">/</span><span class="mi">128</span>
+<span class="k">set</span> <span class="n">protocols</span> <span class="n">ospf</span> <span class="n">area</span> <span class="mi">0</span> <span class="n">interface</span> <span class="n">ge</span><span class="o">-</span><span class="mi">0</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="mi">0</span><span class="p">.</span><span class="mi">0</span>
+<span class="k">set</span> <span class="n">protocols</span> <span class="n">ospf</span> <span class="n">area</span> <span class="mi">0</span> <span class="n">interface</span> <span class="n">lo0</span><span class="p">.</span><span class="mi">0</span>
+<span class="k">set</span> <span class="n">protocols</span> <span class="n">ospf3</span> <span class="n">area</span> <span class="mi">0</span> <span class="n">interface</span> <span class="n">ge</span><span class="o">-</span><span class="mi">0</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="mi">0</span><span class="p">.</span><span class="mi">0</span>
+<span class="k">set</span> <span class="n">protocols</span> <span class="n">ospf3</span> <span class="n">area</span> <span class="mi">0</span> <span class="n">interface</span> <span class="n">lo0</span><span class="p">.</span><span class="mi">0</span>
+<span class="k">commit</span>
+</pre></div></p>
                 
                   
                 

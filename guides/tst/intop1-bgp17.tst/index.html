@@ -524,13 +524,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#verification" class="md-nav__link">
-    Verification
-  </a>
-  
-</li>
-      
       
       
       
@@ -615,7 +608,7 @@
  <span class="n">neighbor</span> <span class="mf">2.2</span><span class="o">.</span><span class="mf">2.2</span> <span class="n">pmsitun</span>
  <span class="n">neighbor</span> <span class="mf">2.2</span><span class="o">.</span><span class="mf">2.2</span> <span class="n">send</span><span class="o">-</span><span class="n">community</span> <span class="n">standard</span> <span class="n">extended</span>
  <span class="n">afi</span><span class="o">-</span><span class="n">evpn</span> <span class="mi">10</span> <span class="n">bridge</span><span class="o">-</span><span class="n">group</span> <span class="mi">1</span>
- <span class="n">afi</span><span class="o">-</span><span class="n">evpn</span> <span class="mi">10</span> <span class="n">bmac</span> <span class="mf">0013.0</span><span class="n">a46</span><span class="o">.</span><span class="mi">0</span><span class="n">f6a</span>
+ <span class="n">afi</span><span class="o">-</span><span class="n">evpn</span> <span class="mi">10</span> <span class="n">bmac</span> <span class="mf">0028.2</span><span class="n">f6f</span><span class="o">.</span><span class="mi">371</span><span class="n">d</span>
  <span class="n">afi</span><span class="o">-</span><span class="n">evpn</span> <span class="mi">10</span> <span class="n">encapsulation</span> <span class="n">cmac</span>
  <span class="n">afi</span><span class="o">-</span><span class="n">evpn</span> <span class="mi">10</span> <span class="n">update</span><span class="o">-</span><span class="n">source</span> <span class="n">loopback0</span>
  <span class="nb">exit</span>
@@ -668,10 +661,10 @@
  <span class="n">no</span> <span class="n">shutdown</span>
  <span class="nb">exit</span>
 <span class="n">interface</span> <span class="n">gigabit1</span>
+ <span class="n">no</span> <span class="n">shutdown</span>
  <span class="n">service</span> <span class="n">instance</span> <span class="mi">10</span> <span class="n">ethernet</span>
   <span class="n">encapsulation</span> <span class="n">dot1q</span> <span class="mi">10</span>
   <span class="n">rewrite</span> <span class="n">ingress</span> <span class="n">tag</span> <span class="n">pop</span> <span class="mi">1</span> <span class="n">symmetric</span>
- <span class="n">no</span> <span class="n">shutdown</span>
  <span class="nb">exit</span>
 <span class="n">ip</span> <span class="n">route</span> <span class="mf">2.2</span><span class="o">.</span><span class="mf">2.1</span> <span class="mf">255.255</span><span class="o">.</span><span class="mf">255.255</span> <span class="mf">1.1</span><span class="o">.</span><span class="mf">1.1</span>
 <span class="n">ipv6</span> <span class="n">route</span> <span class="mi">4321</span><span class="p">::</span><span class="mi">1</span><span class="o">/</span><span class="mi">128</span> <span class="mi">1234</span><span class="p">::</span><span class="mi">1</span>
@@ -742,7 +735,6 @@
 <span class="o">!</span>
 <span class="k">end</span>
 </pre></div></p>
-<h2 id="verification"><strong>Verification</strong><a class="headerlink" href="#verification" title="Permanent link">&para;</a></h2>
                 
                   
                 
